@@ -7,24 +7,12 @@ document.getElementById("searchButton").addEventListener("click", function () {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ products })
+    body: JSON.stringify({
+      type: 'search', // or 'admin'
+      products: ['apples', 'milk']
+    })
   })
-  .then(response => response.json())
-  .then(data => {
-    const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = "";
-    if (data && data.results && data.results.length > 0) {
-      data.results.forEach(item => {
-        const div = document.createElement("div");
-        div.textContent = `${item.name} - ${item.price} (${item.retailer})`;
-        resultsDiv.appendChild(div);
-      });
-    } else {
-      resultsDiv.textContent = "No matching products found. We'll check overnight!";
-    }
-  })
-  .catch(error => {
-    document.getElementById("results").textContent = "Error fetching data.";
-    console.error("Error:", error);
-  });
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
 });
