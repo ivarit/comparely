@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Comparely</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <h1>Welcome to Comparely</h1>
-  <input type="text" id="search" placeholder="Search products...">
-  <button onclick="search()">Search</button>
-  <div id="results"></div>
-  <script src="main.js"></script>
+<body class="bg-gray-50 text-gray-900">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">Comparely</h1>
+    <div class="mb-6">
+      <input type="text" id="productInput" placeholder="Enter product names (e.g. apples, bread)"
+             class="w-full p-3 border border-gray-300 rounded-lg" />
+      <button onclick="searchProducts()"
+              class="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Search</button>
+    </div>
+    <div id="results" class="space-y-4"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
