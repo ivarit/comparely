@@ -12,7 +12,7 @@ document.getElementById("searchButton").addEventListener("click", function () {
       products: ['apples', 'milk']
     })
   })
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+  .then(response => response.json())
+  .then(data => console.log('RESULT:', data))
+  .catch(err => console.error('ERROR:', err));
 });
