@@ -31,3 +31,51 @@ async function searchProducts() {
     responseBox.innerHTML = "<p class='text-red-600'>Error fetching results.</p>";
   }
 }
+
+
+
+async function addProductsToScrape() {
+  const input = document.getElementById('productAddInput').value;
+  const products = input.split(',').map(product => product.trim());
+
+  if (products.length === 0) {
+    alert('Please enter some products.');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${BACKEND_URL}/addProductsToQueue`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ products })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert(data.message);
+    } else {
+      alert(`Error: ${data.message}`);
+    }
+  } catch (error) {
+    alert('Failed to add products to queue.');
+  }
+}
+
+async function triggerScraper() {
+  try {
+    const response = await fetch(`${BACKEND_URL}/triggerScraper`, {
+      method: "POST"
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert(data.message);
+    } else {
+      alert(`Error: ${data.message}`);
+    }
+  } catch (error) {
+    alert('Failed to trigger scraper.');
+  }
+}
